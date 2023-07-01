@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:VideoPoker.Models"
+             xmlns:viewmodel="clr-namespace:VideoPoker.ViewModels"
+             x:Class="VideoPoker.MainPage"
+             x:DataType="viewmodel:GameViewModel">
+
+    <VerticalStackLayout HorizontalOptions="Center"
+                         VerticalOptions="Center">
+        <CollectionView ItemsSource="{Binding PlayerHand}"
+                        ItemsLayout="HorizontalList">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout Padding="20" x:DataType="model:Card">
+                        <Image Source="{Binding Image}"
+                               WidthRequest="200"
+                               HeightRequest="300"
+                               Aspect="AspectFit"/>
+                        <Button Text="Holding"
+                                WidthRequest="200"
+                                BackgroundColor="{Binding ButtonColor}"
+                                CommandParameter="{Binding .}"
+                                Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodel:GameViewModel}}, Path=ToggleHoldCardCommand}"/>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+        <Button Text="Deal"
+                Command="{Binding DealCardsCommand}"/>
+        
+    </VerticalStackLayout>
+
+</ContentPage>
