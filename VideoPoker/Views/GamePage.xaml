@@ -1,13 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:VideoPoker.Models"
              xmlns:viewmodel="clr-namespace:VideoPoker.ViewModels"
-             x:Class="VideoPoker.MainPage"
+             x:Class="VideoPoker.GamePage"
              x:DataType="viewmodel:GameViewModel">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
+    </Shell.BackButtonBehavior>
 
     <VerticalStackLayout HorizontalOptions="Center"
                          VerticalOptions="Center">
+
+        <Label Text="{Binding Credits, StringFormat='Credits: {0}'}"
+               FontSize="42"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"
+               HorizontalTextAlignment="Center"
+               WidthRequest="400"/>
+        <Label Text="{Binding Result}"
+               FontSize="48"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"
+               HorizontalTextAlignment="Center"/>
         <CollectionView ItemsSource="{Binding PlayerHand}"
                         ItemsLayout="HorizontalList">
             <CollectionView.ItemTemplate>
@@ -19,6 +34,7 @@
                                Aspect="AspectFit"/>
                         <Button Text="Holding"
                                 WidthRequest="200"
+                                TextColor="White"
                                 BackgroundColor="{Binding ButtonColor}"
                                 CommandParameter="{Binding .}"
                                 Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodel:GameViewModel}}, Path=ToggleHoldCardCommand}"/>
@@ -26,10 +42,17 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        
-        <Button Text="Deal"
-                Command="{Binding DealCardsCommand}"/>
-        
-    </VerticalStackLayout>
 
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Button Text="Deal"
+                    WidthRequest="200"
+                    Command="{Binding DealCardsCommand}"/>
+            <Button Text="Draw"
+                    WidthRequest="200"
+                    Command="{Binding DrawCardsCommand}"/>
+            <Button Text="Cash Out"
+                    WidthRequest="200"
+                    Command="{Binding LeaveGameCommand}"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
 </ContentPage>

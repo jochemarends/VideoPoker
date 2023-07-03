@@ -1,55 +1,133 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using VideoPoker.Models;
 
 namespace VideoPoker.ViewModels
 {
-    public class GameViewModel : INotifyPropertyChanged
+    public enum GameState
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        Dealing,
+        Drawing
+    }
 
+    public class GameViewModel : NotifyPropertyOnChanged
+    {
         private readonly Deck deck;
-        public PlayerHand PlayerHand { get; set; } = new();
-    
-        public ICommand ToggleHoldCardCommand { get; set; }
-        public ICommand DealCardsCommand { get; set; }
+        private GameState gameState = GameState.Dealing;
 
-        public GameViewModel(Deck deck)
+        private int credits = 3;
+        public int Credits
+        {
+            get => credits;
+            set => SetProperty(ref credits, value);
+        }
+
+        private string result = string.Empty;
+        public string Result
+        {
+            get => result;
+            set => SetProperty(ref result, value);
+        }
+
+        private const int cardsInHand = 5;
+        public ObservableCollection<Card> PlayerHand { get; private set; } = new();
+        public HandEvaluator HandEvaluator { get; private set; }
+
+        public ICommand ToggleHoldCardCommand { get; private set; }
+        public ICommand DealCardsCommand { get; private set; }
+        public ICommand DrawCardsCommand { get; private set; }
+        public ICommand LeaveGameCommand { get; private set; }
+
+        public GameViewModel(Deck deck, HandEvaluator handEvaluator)
         {
             this.deck = deck;
+            HandEvaluator = handEvaluator;
+            
+            ToggleHoldCardCommand = new Command<Card>(ToggleHoldCard, CanToggleHoldCard);
+            DealCardsCommand = new Command(DealCards, CanDealCards);
+            DrawCardsCommand = new Command(DrawCards, CanDrawCards);
+            LeaveGameCommand = new Command(LeaveGame);
 
-            // Populating the player's hand.
-            const int cardsInHand = 5;
+            DealCards();
+        }
+
+        private bool CanToggleHoldCard(Card card) => gameState == GameState.Drawing;
+        private void ToggleHoldCard(Card card)
+        {
+            card.IsHolding = !card.IsHolding;
+        }
+
+        private bool CanDealCards() => gameState == GameState.Dealing;
+        private void DealCards()
+        {
+            if (Credits == 0) LeaveGame();
+            Credits--;
+
+            foreach (Card card in PlayerHand)
+            {
+                card.IsHolding = false;
+                deck.Add(card);
+            }
+
+            PlayerHand.Clear();
             for (int i = 0; i < cardsInHand; i++)
             {
                 PlayerHand.Add(deck.DrawCard());
             }
 
-            ToggleHoldCardCommand = new Command<Card>(ToggleHoldCard);
-            DealCardsCommand = new Command(DealCards);
+
+            IHand match = HandEvaluator.Evaluate(PlayerHand);
+            Result = match.Name;
+
+            NextGameState();
         }
 
-        public void ToggleHoldCard(Card card)
+        private bool CanDrawCards() => gameState == GameState.Drawing;
+        private void DrawCards()
         {
-            card.IsHolding = !card.IsHolding;
-        }
-
-        public void DealCards()
-        {
+            // Swap the cards that aren't marked as held.
             for (int index = 0; index < PlayerHand.Count; index++)
             {
                 if (PlayerHand[index].IsHolding)
                 {
                     PlayerHand[index].IsHolding = false;
+                }
+                else
+                {
                     SwapCardAt(index);
                 }
             }
+
+            NextGameState();
+
+            IHand match = HandEvaluator.Evaluate(PlayerHand);
+            Credits += match.Reward;
+            Result = match.Name;
+        }
+
+        private void NextGameState()
+        {
+            switch(gameState)
+            {
+                case GameState.Dealing:
+                    gameState = GameState.Drawing;
+                    break;
+                case GameState.Drawing:
+                    gameState = GameState.Dealing;
+                    break;
+            }
+
+            (ToggleHoldCardCommand as Command).ChangeCanExecute();
+            (DrawCardsCommand as Command).ChangeCanExecute();
+            (DealCardsCommand as Command).ChangeCanExecute();
         }
 
         private void SwapCardAt(int index)
@@ -58,19 +136,14 @@ namespace VideoPoker.ViewModels
             PlayerHand[index] = deck.DrawCard();
         }
 
-        private bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+        private void LeaveGame()
         {
-            if (Object.Equals(storage, value))
-                return false;
+            foreach (Card card in PlayerHand)
+            {
+                deck.Add(card);
+            }
 
-            storage = value;
-            OnPropertyChanged(propertyName);
-            return true;
-        }
-
-        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            Shell.Current.GoToAsync($"GameOverPage?Score={Credits}");
         }
     }
 }

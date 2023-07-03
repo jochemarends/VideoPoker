@@ -4,10 +4,10 @@ namespace VideoPoker;
 
 public partial class MainPage : ContentPage
 {
-	public MainPage(GameViewModel gameViewModel)
+	public MainPage(MainViewModel mainViewModel)
 	{
 		InitializeComponent();
-		BindingContext = gameViewModel;
+		BindingContext = mainViewModel;
 	}
 }
 

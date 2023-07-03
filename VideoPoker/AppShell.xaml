@@ -7,7 +7,6 @@
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
-        Title="Video Poker"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 

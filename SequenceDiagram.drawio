@@ -1,0 +1,80 @@
+<mxfile host="app.diagrams.net" modified="2023-07-03T01:40:52.694Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="u19m0beMgRaloxaCCH0-" version="21.5.2" type="device">
+  <diagram name="Pagina-1" id="xV3gcOJyFwMMv54wiVGS">
+    <mxGraphModel dx="978" dy="481" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="9RSGI1Ghhnm49PoLiUOf-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="9RSGI1Ghhnm49PoLiUOf-1" target="9RSGI1Ghhnm49PoLiUOf-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9RSGI1Ghhnm49PoLiUOf-7" value="GetDeckAsync" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9RSGI1Ghhnm49PoLiUOf-3">
+          <mxGeometry x="-0.2836" y="1" relative="1" as="geometry">
+            <mxPoint x="10" y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9RSGI1Ghhnm49PoLiUOf-20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;endFill=0;" edge="1" parent="1" source="9RSGI1Ghhnm49PoLiUOf-1" target="9RSGI1Ghhnm49PoLiUOf-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9RSGI1Ghhnm49PoLiUOf-1" value="DeckOfCardsService" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="300" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="9RSGI1Ghhnm49PoLiUOf-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="9RSGI1Ghhnm49PoLiUOf-19">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="410" y="420" as="targetPoint" />
+            <mxPoint x="865" y="410" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="865" y="420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9RSGI1Ghhnm49PoLiUOf-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;dashed=1;" edge="1" parent="1" source="9RSGI1Ghhnm49PoLiUOf-2" target="9RSGI1Ghhnm49PoLiUOf-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9RSGI1Ghhnm49PoLiUOf-2" value="Deck of Cards API" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="300" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="9RSGI1Ghhnm49PoLiUOf-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="9RSGI1Ghhnm49PoLiUOf-4" target="9RSGI1Ghhnm49PoLiUOf-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9RSGI1Ghhnm49PoLiUOf-9" value="CreateMauiApp" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9RSGI1Ghhnm49PoLiUOf-5">
+          <mxGeometry x="-0.135" y="1" relative="1" as="geometry">
+            <mxPoint x="5" y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9RSGI1Ghhnm49PoLiUOf-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;endFill=0;" edge="1" parent="1" source="9RSGI1Ghhnm49PoLiUOf-4" target="9RSGI1Ghhnm49PoLiUOf-21">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="410" y="360" />
+              <mxPoint x="410" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9RSGI1Ghhnm49PoLiUOf-4" value="MauiProgram" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="300" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="9RSGI1Ghhnm49PoLiUOf-14" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="855" y="370" width="20" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="9RSGI1Ghhnm49PoLiUOf-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;dashed=1;" edge="1" parent="1" source="9RSGI1Ghhnm49PoLiUOf-19">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="625" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9RSGI1Ghhnm49PoLiUOf-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="9RSGI1Ghhnm49PoLiUOf-19">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="420" y="450" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="625" y="450" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9RSGI1Ghhnm49PoLiUOf-19" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="615" y="400" width="20" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="9RSGI1Ghhnm49PoLiUOf-21" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="430" width="20" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

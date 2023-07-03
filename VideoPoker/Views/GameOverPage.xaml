@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:VideoPoker.ViewModels"
+             x:Class="VideoPoker.GameOverPage"
+             x:DataType="viewmodel:GameOverViewModel">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
+    </Shell.BackButtonBehavior>
+
+    <VerticalStackLayout HorizontalOptions="Center">
+        <Label 
+            Text="Game Over!"
+            FontAttributes="Bold"
+            FontSize="76"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            Margin="0, 50, 0, 50"/>
+
+        <Label
+            Text="{Binding Score, StringFormat='Credits: {0}'}"
+            FontSize="42"
+            HorizontalOptions="Center"
+            Margin="0, 0, 0, 100"/>
+
+        <Button 
+            Text="Continue"
+            WidthRequest="200"
+            BackgroundColor="Red"
+            Command="{Binding GoToMenuCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>

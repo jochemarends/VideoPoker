@@ -9,6 +9,19 @@ public static class MauiProgram
 {
 	public static MauiApp CreateMauiApp()
 	{
+		HandEvaluator handEvaluator = new()
+		{
+			new JacksOrBetter(),
+			new TwoPair(),
+			new ThreeOfAKind(),
+			new Straight(),
+			new Flush(),
+			new FullHouse(),
+			new FourOfAKind(),
+			new StraightFlush(),
+			new RoyalFlush()
+		};
+
 		DeckOfCardsService deckOfCardsService = new();
 		Deck deck = Task.Run(deckOfCardsService.GetDeckAsync).GetAwaiter().GetResult();
 
@@ -22,8 +35,13 @@ public static class MauiProgram
 			})
 			.Services
 			.AddSingleton(deck)
+			.AddSingleton(handEvaluator)
+			.AddTransient<GamePage>()
 			.AddTransient<GameViewModel>()
-			.AddTransient<MainPage>();
+			.AddTransient<MainPage>()
+			.AddTransient<MainViewModel>()
+			.AddTransient<GameOverPage>()
+			.AddTransient<GameOverViewModel>();
 
 #if DEBUG
 		builder.Logging.AddDebug();

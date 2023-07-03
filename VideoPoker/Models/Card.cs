@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
+using VideoPoker.Converters;
 
 namespace VideoPoker.Models
 {
@@ -34,7 +35,7 @@ namespace VideoPoker.Models
 
         private Rank rank;
         [JsonPropertyName("value")]
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(RankConverter))]
         public Rank Rank
         {
             get => rank;
