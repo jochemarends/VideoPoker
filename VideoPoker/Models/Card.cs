@@ -30,7 +30,7 @@ namespace VideoPoker.Models
         Spades
     }
 
-    public class Card : INotifyPropertyChanged
+    public class Card : NotifyPropertyChanged
     {
 
         private Rank rank;
@@ -71,21 +71,5 @@ namespace VideoPoker.Models
         }
 
         public Color ButtonColor => IsHolding ? Colors.YellowGreen : Colors.Red;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
-        {
-            if (Equals(storage, value))
-                return false;
-
-            storage = value;
-            OnPropertyChanged(propertyName);
-            return true;
-        }
-
-        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

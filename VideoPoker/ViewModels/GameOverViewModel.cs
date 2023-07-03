@@ -8,7 +8,7 @@ using System.Windows.Input;
 namespace VideoPoker.ViewModels
 {
     [QueryProperty("Score", "Score")]
-    public class GameOverViewModel : NotifyPropertyOnChanged
+    public class GameOverViewModel : NotifyPropertyChanged
     {
         private int score;
         public int Score

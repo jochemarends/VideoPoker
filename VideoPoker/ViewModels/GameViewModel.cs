@@ -18,7 +18,7 @@ namespace VideoPoker.ViewModels
         Drawing
     }
 
-    public class GameViewModel : NotifyPropertyOnChanged
+    public class GameViewModel : NotifyPropertyChanged
     {
         private readonly Deck deck;
         private GameState gameState = GameState.Dealing;
