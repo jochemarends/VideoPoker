@@ -27,3 +27,6 @@ The cost of a deal is one credit and the rewards per card combination are shown 
 | Four of a Kind  | 6      |
 | Straight Flush  | 7      |
 | Royal Flush     | 8      |
+
+### Screenshot
+![img0](screenshot.png)
