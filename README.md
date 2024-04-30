@@ -30,3 +30,5 @@ The cost of a deal is one credit and the rewards per card combination are shown 
 
 ### Screenshot
 ![img0](screenshot.png)
+
+The implementation of the rules may be incorrect since efore this project I was not familiar with Video Poker, let alone Poker in general.
